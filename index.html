@@ -64,20 +64,20 @@
     display: block;
   }
 
-  /* --- БЛОК ДЛЯ ГИФКИ --- */
+  /* --- БЛОК ДЛЯ ГИФКИ (РАСТЯНУТ) --- */
   .arima-gif-block {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 0; /* Убрали отступы, чтобы гифка прилипала к краям */
+    overflow: hidden; /* Чтобы гифка не вылезала за скругленные углы блока */
   }
 
   .arima-gif {
-    max-width: 100%; /* Гифка не вылезет за рамки */
-    max-height: 250px; /* Ограничитель высоты */
-    object-fit: contain; /* Сохраняет пропорции */
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+    width: 100%; /* Растягивает на всю ширину */
+    height: auto; /* Сохраняет пропорции */
+    display: block;
+    /* Убрал border-radius и box-shadow у самой гифки, так как теперь она внутри блока */
   }
 
   /* Блок ДР */
@@ -191,14 +191,12 @@
   <!-- Аватарка (Привязана к файлу avatar.jpg) -->
   <div class="block header-block">
     <div class="avatar-wrapper" id="avatarContainer">
-      <!-- ТУТ ССЫЛКА НА ТВОЙ ФАЙЛ -->
       <img src="avatar.jpg" alt="Avatar">
     </div>
   </div>
 
-  <!-- Гифка Аримы (Привязана к файлу eyes.gif) -->
+  <!-- Гифка (Привязана к файлу eyes.gif) -->
   <div class="block arima-gif-block">
-    <!-- ТУТ ССЫЛКА НА ТВОЙ ФАЙЛ -->
     <img src="eyes.gif" alt="Глаза Аримы" class="arima-gif">
   </div>
 
