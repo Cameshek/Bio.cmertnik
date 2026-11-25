@@ -64,20 +64,22 @@
     display: block;
   }
 
-  /* --- БЛОК ДЛЯ ГИФКИ (РАСТЯНУТ) --- */
+  /* --- БЛОК ДЛЯ ГИФКИ (КАК НА СКРИНШОТЕ) --- */
   .arima-gif-block {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0; /* Убрали отступы, чтобы гифка прилипала к краям */
-    overflow: hidden; /* Чтобы гифка не вылезала за скругленные углы блока */
+    padding: 10px; /* Возвращаем отступы, чтобы гифка не прилипала к краям */
+    overflow: hidden;
+    height: 200px; /* Задаем фиксированную высоту для широкого формата */
   }
 
   .arima-gif {
-    width: 100%; /* Растягивает на всю ширину */
-    height: auto; /* Сохраняет пропорции */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Заполняет весь блок без искажений (края могут немного обрезаться) */
+    border-radius: 8px; /* Скругление самой гифки внутри блока */
     display: block;
-    /* Убрал border-radius и box-shadow у самой гифки, так как теперь она внутри блока */
   }
 
   /* Блок ДР */
@@ -180,6 +182,9 @@
   @media (max-width: 768px) {
     .bottom-grid {
       flex-direction: column;
+    }
+    .arima-gif-block {
+      height: 150px; /* На телефонах делаем чуть ниже */
     }
   }
 </style>
