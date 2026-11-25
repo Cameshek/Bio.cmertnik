@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bio Profile</title>
+<style>
+  /* Глубокий красно-черный фон */
+  body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at center, #1a0000 0%, #000000 100%);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .profile-container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Общий стиль блоков */
+  .block {
+    background: rgba(15, 0, 0, 0.8);
+    border: 1px solid #8b0000;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.15);
+    padding: 20px;
+    position: relative;
+  }
+
+  /* Блок с аватаркой */
+  .header-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    overflow: hidden;
+  }
+
+  .avatar-wrapper {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #ff3333;
+    box-shadow: 0 0 20px #ff0000;
+    overflow: hidden;
+    transition: transform 0.1s ease-out;
+    cursor: pointer;
+  }
+
+  .avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* --- БЛОК ДЛЯ ГИФКИ --- */
+  .arima-gif-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .arima-gif {
+    max-width: 100%; /* Гифка не вылезет за рамки */
+    max-height: 250px; /* Ограничитель высоты */
+    object-fit: contain; /* Сохраняет пропорции */
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+  }
+
+  /* Блок ДР */
+  .bday-block {
+    text-align: center;
+    color: #ff4d4d;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .bday-time {
+    font-size: 24px;
+    margin-top: 10px;
+    text-shadow: 0 0 10px #ff0000;
+    color: #fff;
+  }
+
+  /* Нижняя часть */
+  .bottom-grid {
+    display: flex;
+    gap: 15px;
+  }
+
+  .info-block, .games-block {
+    flex: 1;
+  }
+
+  .title {
+    color: #ff4d4d;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .info-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ddd;
+  }
+
+  .info-text b {
+    color: #fff;
+  }
+
+  /* Ссылка на Telegram */
+  .tg-link {
+    color: #ff4d4d;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s, text-shadow 0.2s;
+  }
+
+  .tg-link:hover {
+    color: #ff9999;
+    text-shadow: 0 0 8px #ff0000;
+  }
+
+  /* Сетка игр */
+  .games-grid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* Карточка игры */
+  .game-card {
+    width: 110px;
+    height: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #550000;
+    position: relative;
+    background: #111;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .game-card:hover {
+    transform: scale(1.05);
+    border-color: #ff3333;
+    box-shadow: 0 0 12px #ff0000;
+  }
+
+  /* Картинки игр */
+  .game-card img.game-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Адаптив под телефоны */
+  @media (max-width: 768px) {
+    .bottom-grid {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="profile-container">
+  
+  <!-- Аватарка (Привязана к файлу avatar.jpg) -->
+  <div class="block header-block">
+    <div class="avatar-wrapper" id="avatarContainer">
+      <!-- ТУТ ССЫЛКА НА ТВОЙ ФАЙЛ -->
+      <img src="avatar.jpg" alt="Avatar">
+    </div>
+  </div>
+
+  <!-- Гифка Аримы (Привязана к файлу eyes.gif) -->
+  <div class="block arima-gif-block">
+    <!-- ТУТ ССЫЛКА НА ТВОЙ ФАЙЛ -->
+    <img src="eyes.gif" alt="Глаза Аримы" class="arima-gif">
+  </div>
+
+  <!-- День Рождения -->
+  <div class="block bday-block">
+    🎂 До моего Дня Рождения осталось:<br>
+    <div class="bday-time" id="countdown">Загрузка...</div>
+  </div>
+
+  <div class="bottom-grid">
+    
+    <!-- Обо мне -->
+    <div class="block info-block">
+      <div class="title">🌸 Обо мне</div>
+      <div class="info-text">
+        Привет если ты сюда перешол тебе интересно<br><br>
+        Я играю в <b>дднет, кс и шахматы</b><br><br>
+        Снизу тут его тг:<br>
+        <a href="https://t.me/cmepTHuk111" target="_blank" class="tg-link">@cmepTHuk111</a>
+      </div>
+    </div>
+
+    <!-- Игры -->
+    <div class="block games-block">
+      <div class="title">🎮 Люблю игры</div>
+      <div class="games-grid">
+        
+        <!-- 1. DDrace -->
+        <a href="https://store.steampowered.com/app/412220/DDNet/" target="_blank" class="game-card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiAGds8EpSrK1hWExjQQ2PrjOoNCFiK3Q2W8M3_DjuZg&s=10" alt="DDrace" class="game-cover">
+        </a>
+
+        <!-- 2. CS2 -->
+        <a href="https://store.steampowered.com/app/730/CounterStrike_2/" target="_blank" class="game-card">
+          <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/730/capsule_616x353.jpg" alt="CS2" class="game-cover">
+        </a>
+
+        <!-- 3. Шахматы -->
+        <a href="https://www.chess.com/" target="_blank" class="game-card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHPpm0cs6BZrDlVxpqApSxFAGOln1RYO1AhQAxtfeIlg&s=10" alt="Шахматы" class="game-cover">
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  /* --- 1. Счётчик ДР --- */
+  function updateCountdown() {
+    const now = new Date();
+    let year = now.getFullYear();
+    let targetDate = new Date(year, 6, 31, 0, 0, 0); // 31 июля
+
+    if (now > targetDate) {
+      targetDate = new Date(year + 1, 6, 31, 0, 0, 0);
+    }
+
+    const diff = targetDate - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('countdown').innerText = 
+      `${days} д. ${hours} ч. ${minutes} мин. ${seconds} сек.`;
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  /* --- 2. Аватарка (следование) --- */
+  const avatarWrapper = document.getElementById('avatarContainer');
+  const headerBlock = document.querySelector('.header-block');
+
+  headerBlock.addEventListener('mousemove', (e) => {
+    const rect = headerBlock.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    avatarWrapper.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px) scale(1.05)`;
+  });
+
+  headerBlock.addEventListener('mouseleave', () => {
+    avatarWrapper.style.transform = `translate(0px, 0px) scale(1)`;
+  });
+</script>
+
+</body>
+</html>
